@@ -6,10 +6,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/meateam/ocr-func/function"
 	"io/ioutil"
 	"log"
 	"os"
+
+	"handler/function"
 )
 
 func main() {

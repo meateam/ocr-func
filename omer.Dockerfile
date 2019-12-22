@@ -1,5 +1,6 @@
 FROM  golang:alpine3.10
 
+WORKDIR /root
 # Alternatively use ADD https:// (which will not be cached by Docker builder)
 RUN apk --no-cache \
     add curl \ 
@@ -14,7 +15,7 @@ RUN set -x && apk add  --update --no-cache --virtual wget-dependencies \
     ca-certificates \
     openssl
 
-RUN apk add build-base python-dev py-pip  jpeg-dev zlib-dev
+RUN apk add build-base python-dev py-pip  jpeg-dev zlib-dev gcc
 ENV LIBRARY_PATH=/lib:/usr/lib
 
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
@@ -30,15 +31,20 @@ RUN wget -O ${TESSDATA_PREFIX}/osd.traineddata https://github.com/tesseract-ocr/
     wget -O ${TESSDATA_PREFIX}/eng.traineddata https://github.com/tesseract-ocr/tessdata/raw/4.00/ara.traineddata && \
     wget -O ${TESSDATA_PREFIX}/eng.traineddata https://github.com/tesseract-ocr/tessdata/raw/4.00/fas.traineddata
 
-WORKDIR /root/
+RUN apk add \
+    leptonica-dev \
+    tesseract-ocr-dev \
+    tesseract-ocr
 
 COPY go.mod go.sum ./
 RUN go mod download
 
 COPY . .
 
-RUN go build --ldflags "-s -w" -a -installsuffix cgo -o handler .
+RUN go build -o handler .
 
 ENV fprocess="./handler"
+
+HEALTHCHECK --interval=1s CMD [ -e /tmp/.lock ] || exit 1
 
 CMD ["fwatchdog"]

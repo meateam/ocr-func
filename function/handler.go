@@ -17,7 +17,7 @@ func Handle(req []byte) string {
 		return err.Error()
 	}
 
-	if err := client.SetImageFromBytes(req.Body); err != nil {
+	if err := client.SetImageFromBytes(req); err != nil {
 		return err.Error()
 	}
 
