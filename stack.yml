@@ -1,0 +1,9 @@
+provider:
+  name: openfaas
+  gateway: http://openfaas.northeurope.cloudapp.azure.com
+
+functions:
+  openfaas-ocr:
+    lang: Dockerfile
+    handler: ./openfaas-ocr
+    image: bluehub.azurecr.io/meateam/openfaas-ocr:latest

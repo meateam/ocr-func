@@ -1,0 +1,5 @@
+github.com/meateam/ocr-func v0.0.0-20191222104548-2039156351b3 h1:9pmmmfxWXO2pOOSuihb3b0fP11eT56FCDTl51mB5Cr4=
+github.com/openfaas-incubator/go-function-sdk v0.0.0-20181217173454-cac4b8744921 h1:IGP0tlTdv6r/zy3Kw61EhiXao61krCUs5KRHWSzCdxM=
+github.com/openfaas-incubator/go-function-sdk v0.0.0-20181217173454-cac4b8744921/go.mod h1:F37Kp+hwdHP+o3UKjkGzikQg4weKiMvcegT9vCQjvjE=
+github.com/otiai10/gosseract v2.2.1+incompatible h1:Ry5ltVdpdp4LAa2bMjsSJH34XHVOV7XMi41HtzL8X2I=
+github.com/otiai10/gosseract v2.2.1+incompatible/go.mod h1:XrzWItCzCpFRZ35n3YtVTgq5bLAhFIkascoRo8G32QE=
